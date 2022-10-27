@@ -25,6 +25,7 @@ public class CategorieProduitController {
 	}
 
 	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-categorieProduit/8
+
 	@GetMapping("/retrieve-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
 	public CategorieProduit retrieveCategorieProduit(@PathVariable("categorieProduit-id") Long categorieProduitId) {
