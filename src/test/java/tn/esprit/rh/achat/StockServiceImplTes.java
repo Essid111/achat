@@ -28,6 +28,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import tn.esprit.rh.achat.entities.Stock;
 import tn.esprit.rh.achat.repositories.StockRepository;
 import tn.esprit.rh.achat.services.StockServiceImpl;
+import org.junit.Before;
+import org.mockito.MockitoAnnotations;
 
 
 
@@ -40,6 +42,11 @@ import tn.esprit.rh.achat.services.StockServiceImpl;
 	
 	@Autowired
 	StockServiceImpl srvce;
+	
+	@Before
+	public void setup(){
+	    MockitoAnnotations.initMocks(this); //without this you will get NPE
+	}
 	
 	
 	@Test
