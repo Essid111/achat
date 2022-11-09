@@ -16,8 +16,11 @@ import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
+import org.mockito.exceptions.base.MockitoException;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -29,7 +32,7 @@ import tn.esprit.rh.achat.services.StockServiceImpl;
 
 
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
  class StockServiceImplTest {
 
 	@MockBean
