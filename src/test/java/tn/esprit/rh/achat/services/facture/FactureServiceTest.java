@@ -2,6 +2,7 @@ package tn.esprit.rh.achat.services.facture;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,19 +21,23 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class FactureServiceTest {
+public class FactureServiceTest 
+{
 
     @Mock
     FactureRepository factureRepository;
 
     @InjectMocks
     FactureServiceImpl factureService;
+    
+  //  Facture facture = new Facture(1L ,1 ,new Date() ,new Date() ,20 ,20 ,1);
 
     @Test
     public void testRetrieveFacture() {
@@ -70,9 +75,9 @@ public class FactureServiceTest {
         List<Facture> Facturelist = new ArrayList<Facture>() {
 
             {
-                add(new Facture(3L, 100, 700, null, null, null, null, null, null));
-                add(new Facture(4L, 200, 800, null, null, null, null, null, null));
-                add(new Facture(5L, 300, 900, null, null, null, null, null, null));
+            	 add(new Facture(3L, 100, 700, null, null, null, null, null, null));
+                 add(new Facture(4L, 200, 800, null, null, null, null, null, null));
+                 add(new Facture(5L, 300, 900, null, null, null, null, null, null));
             }};
 
 
