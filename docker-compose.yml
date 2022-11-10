@@ -1,0 +1,25 @@
+version: "3"
+services:
+  server:
+    image: oussamalhl/backend
+    ports:
+      - "8089:8089"
+    networks:
+      - springmysql-net
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:5.7
+    networks:
+      - springmysql-net
+    ports:
+      - "3306:3306"
+
+    environment:
+      - MYSQL_DATABASE=devopsdb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=1234
+networks:
+  springmysql-net:
