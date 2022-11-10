@@ -5,7 +5,7 @@ pipeline {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "192.168.43.248:8081"
-        NEXUS_REPOSITORY = chayma-nexus-repo"
+        NEXUS_REPOSITORY = "chayma-nexus-repo"
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
 
