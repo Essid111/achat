@@ -1,27 +1,52 @@
 pipeline {
     agent any
+    
+
+
     stages {
-        stage('git repo & clean') {
-            steps {
-               bat "rmdir  /s /q FactureServiceTest"
-                bat "git clone https://github.com/Essid111/achat.git"
-                bat "mvn clean -f FactureServiceTest"
+        stage("git pull"){
+            steps{
+              
+                git branch: 'ZahraAbassi', 
+                credentialsId: '470a5fd233ca3c0c8fd6e45e3a00daabb256b343', 
+                url: 'https://github.com/Essid111/achat.git'
+                    
+                }
+                
             }
-        }
-        stage('install') {
-            steps {
-                bat "mvn install -f FactureServiceTest"
+                    stage('MVN COMPILE') {
+                steps {
+                sh 'mvn clean compile'
+                    
+                }
+                
             }
-        }
-        stage('test') {
-            steps {
-                bat "mvn test -f FactureServiceTest"
+        stage('clean'){
+                steps{
+                sh 'mvn clean package'
+                    
+                }
+                
+            }  
+        stage('MVN TEST') {
+                steps {
+                sh 'mvn clean test'
+                    
+                }
+                
+            }  
+        stage('build'){
+            steps{
+                sh 'mvn install package'
             }
-        }
-        stage('package') {
-            steps {
-                bat "mvn package -f FactureServiceTest"
-            }
-        }
+         }
+
+  
+       
+        }   
+   
+	
+       
     }
-}
+
+} 
