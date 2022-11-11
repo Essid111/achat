@@ -1,6 +1,7 @@
 package tn.esprit.rh.achat.services.facture;
 
 import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -10,11 +11,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.services.FactureServiceImpl;
+import tn.esprit.rh.achat.services.IFactureService;
 import tn.esprit.rh.achat.entities.DetailFacture;
 import tn.esprit.rh.achat.entities.Reglement;
 
@@ -38,9 +42,18 @@ public class FactureServiceTest
 
     @Mock
     FactureRepository factureRepository;
-
+    @Autowired
+	IFactureService f;
     @InjectMocks
     FactureServiceImpl factureService;
+    @Test
+	@Order(1)
+	void all() {
+		List<Facture> factures = factureService.retrieveAllFactures();
+		Assertions.assertEquals(0, factures.size());
+		
+	
+	}
     
   //  Facture facture = new Facture(1L ,1 ,new Date() ,new Date() ,20 ,20 ,1);
 
@@ -62,7 +75,7 @@ public class FactureServiceTest
 	@Test
 	@Order(2)
 	void addFacture_ok() {
-		List<Facture> factures = factureService.retrieveAllFactures();
+		List<Facture> factures = f.retrieveAllFactures();
 		int currentSize = factures.size();
 		Facture facture = new Facture();
 		facture.setMontantFacture(250);
@@ -78,9 +91,27 @@ public class FactureServiceTest
 		facture.setFournisseur(fournisseur);*/
 		
 		
-		Facture savedFacture = factureService.addFacture(facture);
-		assertEquals(currentSize + 1, factureService.retrieveAllFactures().size());
+		Facture savedFacture = f.addFacture(facture);
+		assertEquals(currentSize + 1, f.retrieveAllFactures().size());
 	}
+	
+	@Test
+	@Order(3)
+	 void retriveFacture_ok() {
+		Facture retrived = f.retrieveFacture(1L);
+		//Assertions.assertEquals(1, retrived.getIdFacture());
+	}
+	
+	/*@Test()
+	@Order(3)
+	@Transactional
+	void assignSecteurActiviteToFournisseur() {
+		f.assignOperateurToFacture(1L, 30L);                         
+		Operateur oper =s.retrieveOperateur(1l);
+		assertEquals(1, oper.getFactures().size());
+		assertEquals(30L, Optional.ofNullable(oper.getFactures().iterator().next().getIdFacture()).get().longValue());
+	}
+	
 
 
     /*@Test
