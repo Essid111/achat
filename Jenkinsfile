@@ -28,6 +28,12 @@ pipeline {
                 }
                 
             }  
+                   stage('Unit test - Junit and jacoco') {
+            steps {
+              sh "mvn test"
+            }
+
+	      }
         stage('MVN TEST') {
                 steps {
                 sh 'mvn clean test'
