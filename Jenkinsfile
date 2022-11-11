@@ -21,6 +21,15 @@ pipeline {
                 }
                 
             }
+             stage('Docker Build and Push') {
+       steps {
+         withDockerRegistry([credentialsId: "Docker-Hub-zahraabassi", url: ""]) {
+           sh 'printenv'
+           sh 'sudo docker build -t zahraabassi/ci:latest .'
+           sh 'docker push zahraabassi/ci:latest '
+         }
+       }
+     }
         stage('clean'){
                 steps{
                 sh 'mvn clean package'
