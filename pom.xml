@@ -25,7 +25,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			
 		</dependency>
 
 		<dependency>
@@ -38,7 +37,11 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -50,7 +53,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
 
 	</dependencies>
 
@@ -71,14 +73,4 @@
 		</plugins>
 	</build>
 
-<distributionManagement>
-        <repository>
-         <id>deploymentRepo</id>
-         <name>admin</name>
-        <url>http://192.168.1.17:8081/repository/maven-releases/</url>
-       </repository>
-      </distributionManagement>
-      
-     
-     
 </project>
