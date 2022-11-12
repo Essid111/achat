@@ -25,6 +25,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			
 		</dependency>
 
 		<dependency>
@@ -53,6 +54,21 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<dependency>
+    <groupId>org.quartz-scheduler</groupId>
+    <artifactId>quartz</artifactId>
+    <version>${quartz.version}</version>
+    <exclusions>
+        <exclusion>
+            <artifactId>c3p0</artifactId>
+            <groupId>com.mchange</groupId>
+        </exclusion>
+        <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>com.zaxxer</groupId>
+        </exclusion>
+    </exclusions>
+</dependency>
 
 	</dependencies>
 
@@ -80,4 +96,7 @@
         <url>http://192.168.1.17:8081/repository/maven-releases/</url>
        </repository>
       </distributionManagement>
+      
+     
+     
 </project>
