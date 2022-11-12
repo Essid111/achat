@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-
-
-
     stages {
         stage("GIT"){
             steps{
@@ -35,17 +31,27 @@ pipeline {
                 sh 'mvn -DskipTests clean package' 
             }
         }
+   
+      stage('Docker Login') {
 
+			steps {
+				sh 'echo $DockerHub_CREDENTIALS_PSW | docker login -u zahraabassi -p espritesprit docker.io'
+			}
+		} 
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t zahraabassi/achat .'
+            }
+        } 
+        stage('Push Docker Image') {
 
-       stage('Docker Build and Push') {
-       steps {
-         withDockerRegistry([credentialsId: "Docker-Hub-zahraabassi", url: ""]) {
-        
-           sh 'sudo docker build -t zahraabassi/achat .'
-           sh 'docker push zahraabassi/achat '
-         }
-       }
-     }
+			steps {
+				sh 'docker push zahraabassi/achat'
+			}
+	}
+	
+	
+       
     }
 
 }
