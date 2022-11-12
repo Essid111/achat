@@ -4,7 +4,7 @@ pipeline {
 
 
     stages {
-        stage("git pull"){
+        stage("GIT"){
             steps{
               
                 git branch: 'ZahraAbassi', 
@@ -19,48 +19,14 @@ pipeline {
                 sh 'mvn clean compile'
                     
                 }
-                
-            }
-             stage('Docker Build and Push') {
-       steps {
-         withDockerRegistry([credentialsId: "Docker-Hub-zahraabassi", url: ""]) {
-           sh 'printenv'
-           sh 'sudo docker build -t zahraabassi/ci:latest .'
-           sh 'docker push zahraabassi/ci:latest '
-         }
-       }
-     }
-        stage('clean'){
-                steps{
-                sh 'mvn clean package'
-                    
-                }
-                
-            }  
-                   stage('Unit test - Junit and jacoco') {
-            steps {
-              sh "mvn test"
-            }
-
-	      }
+                         }
+             stages {
         stage('MVN TEST') {
-                steps {
-                sh 'mvn clean test'
-                    
-                }
-                
-            }  
-        stage('build'){
-            steps{
-                sh 'mvn install package'
+            steps {
+                echo 'mvn -v'
+                echo 'mvn -v'
+                sh 'mvn test'
             }
-         }
-
-  
-       
-        }   
-   
-	
-       
-    }
-
+        }
+             }
+}}
