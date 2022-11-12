@@ -102,6 +102,13 @@ public class FactureServiceTest
 		//Assertions.assertEquals(1, retrived.getIdFacture());
 	}
 	
+	@Test
+	@Order(4)
+	void deleteFacture_ok() {
+		f.cancelFacture(10L);
+		//Assertions.assertNull(f.retrieveFacture(9l));
+	}
+	
 	/*@Test()
 	@Order(3)
 	@Transactional
