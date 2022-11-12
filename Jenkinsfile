@@ -10,16 +10,14 @@
             stage('MVN CLEAN'){
             steps{
                 sh  'mvn clean'
-            }
-        }
+            } }
             
         
                     stage('MVN COMPILE') {
                 steps {
                 sh 'mvn clean compile'
                     
-                }
-                         }
+                } }
                             
         stage('MVN TEST') {
             steps {
@@ -52,4 +50,14 @@
 			steps {
 				sh 'docker push zahraabassi/achat'
 			}}
+			  
+        stage ('SonarQuality') {
+		steps {
+			
+          sh "mvn sonar:sonar \
+             -Dsonar.projectKey=achat \
+             -Dsonar.host.url=http://172.10.2.140:9000 \
+             -Dsonar.login=8478a8191e4f18d831d2c7380b453cc524a6d179"
+		}}
+          }}
 	 
