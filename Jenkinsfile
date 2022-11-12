@@ -34,5 +34,9 @@ pipeline {
             }
         }
           
-   
+    stage('MVN PACKAGE') {
+            steps {
+                sh 'mvn -DskipTests clean package' 
+            }
+        }
 }}
