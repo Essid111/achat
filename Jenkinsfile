@@ -27,16 +27,11 @@ pipeline {
                 echo 'mvn -v'
                 sh 'mvn test'
             }
-        }
-         stage('Testing with maven') { 
-            steps {
-                sh 'mvn test'
-            }
-        }
+      
           
     stage('MVN PACKAGE') {
             steps {
                 sh 'mvn -DskipTests clean package' 
             }
         }
-}}
+}}}
