@@ -20,7 +20,7 @@ pipeline {
                     
                 }
                          }
-             stages {
+                            
         stage('MVN TEST') {
             steps {
                 echo 'mvn -v'
@@ -28,5 +28,5 @@ pipeline {
                 sh 'mvn test'
             }
         }
-             }
+   
 }}
