@@ -33,5 +33,10 @@ pipeline {
                 sh 'mvn test'
             }
         }
+          stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t zahraabassi/alpine .'
+            }
+        } 
    
 }}
