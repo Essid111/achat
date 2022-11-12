@@ -33,7 +33,7 @@ pipeline {
                 echo 'mvn -v'
                 sh 'mvn test'
             }
-      
+        }
           
     stage('MVN PACKAGE') {
             steps {
@@ -46,12 +46,15 @@ pipeline {
             }
         } 
 
-        stage('Push Docker Image') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push zahraabassi/achat'
-            }
-        }
+       stage('Docker Build and Push') {
+       steps {
+         withDockerRegistry([credentialsId: "Docker-Hub-zahraabassi", url: ""]) {
+           sh 'printenv'
+           sh 'sudo docker build -t zahraabassi/achat:latest .'
+           sh 'docker push zahraabassi/achat:latest '
+         }
+       }
+     }
     }
 
 }
@@ -60,4 +63,3 @@ pipeline {
 
 
 
-}
