@@ -1,13 +1,8 @@
 pipeline {
     agent any
     
- options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-    }
 
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-token')
-    }
+
 
     stages {
         stage("GIT"){
@@ -40,18 +35,14 @@ pipeline {
                 sh 'mvn -DskipTests clean package' 
             }
         }
-   stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t zahraabassi/achat .'
-            }
-        } 
+
 
        stage('Docker Build and Push') {
        steps {
          withDockerRegistry([credentialsId: "Docker-Hub-zahraabassi", url: ""]) {
-           sh 'printenv'
-           sh 'sudo docker build -t zahraabassi/achat:latest .'
-           sh 'docker push zahraabassi/achat:latest '
+        
+           sh 'sudo docker build -t zahraabassi/achat .'
+           sh 'docker push zahraabassi/achat '
          }
        }
      }
