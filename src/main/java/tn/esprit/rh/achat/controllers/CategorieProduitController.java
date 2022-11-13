@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rh.achat.entities.CategorieProduit;
+import tn.esprit.rh.achat.dto.DtoCategorieProduit;
 import tn.esprit.rh.achat.services.ICategorieProduitService;
 
 import java.util.List;
@@ -21,7 +22,6 @@ public class CategorieProduitController {
 	@ResponseBody
 	public List<CategorieProduit> getCategorieProduit() {
 		return categorieProduitService.retrieveAllCategorieProduits();
-		
 	}
 
 	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-categorieProduit/8
@@ -34,12 +34,11 @@ public class CategorieProduitController {
 	// http://localhost:8089/SpringMVC/categorieProduit/add-categorieProduit
 	@PostMapping("/add-categorieProduit")
 	@ResponseBody
-	public CategorieProduit addCategorieProduit(@PathVariable("categorieProduit-id") CategorieProduit cp) {
-		return categorieProduitService.addCategorieProduit(cp);
-		
+	public CategorieProduit addCategorieProduit(@RequestBody DtoCategorieProduit cp) {
+		CategorieProduit categorieProduit = new CategorieProduit(cp.getCodeCategorie(),cp.getLibelleCategorie());
+		return	categorieProduitService.addCategorieProduit(categorieProduit);
 	}
 
-	
 	@DeleteMapping("/remove-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
 	public void removeCategorieProduit(@PathVariable("categorieProduit-id") Long categorieProduitId) {
@@ -49,8 +48,11 @@ public class CategorieProduitController {
 	// http://localhost:8089/SpringMVC/categorieProduit/modify-categorieProduit
 	@PutMapping("/modify-categorieProduit")
 	@ResponseBody
-	public CategorieProduit modifyCategorieProduit(@PathVariable("categorieProduit-id") CategorieProduit categorieProduit) {
-		return categorieProduitService.updateCategorieProduit(categorieProduit);
+
+	public CategorieProduit modifyCategorieProduit(@RequestBody DtoCategorieProduit categorieProduit) {
+		CategorieProduit categorieP = new CategorieProduit(categorieProduit.getCodeCategorie(),categorieProduit.getLibelleCategorie());
+		return categorieProduitService.updateCategorieProduit(categorieP);
+
 	}
 
 	
