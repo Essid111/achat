@@ -1,19 +1,25 @@
 version: "3"
 services:
+  server:
+    image: zahraabassi/achat
+    ports:
+      - "8089:8089"
+    networks:
+      - springmysql-net
+    depends_on:
+      - mysqldb
+
   mysqldb:
     image: mysql:5.7
-    container_name: mysql
-    restart: always
+    networks:
+      - springmysql-net
+    ports:
+      - "3306:3306"
+
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: achats
-    ports:
-      - 3306:3306
-  spring-boot:
-    depends_on:
-     - mysqldb
-    image: zahraabassi/achat
-    restart: always
-    ports:
-      - 8089:8089
-    container_name: factureachat
+      - MYSQL_DATABASE=achats
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=1234
+networks:
+  springmysql-net:
