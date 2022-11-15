@@ -1,4 +1,14 @@
- stage("GIT"){
+ pipeline {
+    agent any
+    stages {
+        stage('Build Artifact - Maven') {
+steps {
+sh "mvn clean package -DskipTests=true"
+archive 'target/*.jar'
+
+}
+}
+       stage("GIT"){
             steps{
                 git branch: 'ZahraAbassi', 
                 credentialsId: '470a5fd233ca3c0c8fd6e45e3a00daabb256b343', 
@@ -19,7 +29,7 @@
                     
                 } }
                             
-        stage('MVN TEST') {
+        stage('Unit test') {
             steps {
                 echo 'mvn -v'
                 echo 'mvn -v'
@@ -29,7 +39,9 @@
           
     stage('MVN PACKAGE') {
             steps {
-                sh 'mvn -DskipTests clean package' 
+               sh """mvn -version  """
+                sh """java -version """
+               sh """mvn package -e """ 
             }
         }
    
@@ -59,5 +71,7 @@
              -Dsonar.host.url=http://172.10.2.140:9000 \
              -Dsonar.login=8478a8191e4f18d831d2c7380b453cc524a6d179"
 		}}
+          }
+          
           }}
 	 
