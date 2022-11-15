@@ -24,14 +24,7 @@
     <sonar.language>java</sonar.language>
 	
 	</properties>
-	<distributionManagement>
-     
-         <repository>
-         <id>deploymentRepo </id>
-         <name>maven-releases</name>
-         <url>http://172.17.0.1:8081/repository/maven-releases/</url>
-       </repository>
-   </distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -173,5 +166,12 @@
 </plugin>
 		</plugins>
 	</build>
-
+	<distributionManagement>
+     
+         <repository>
+         <id>deploymentRepo </id>
+         <name>maven-releases</name>
+         <url>http://172.17.0.1:8081/repository/maven-releases/</url>
+       </repository>
+   </distributionManagement>
 </project>

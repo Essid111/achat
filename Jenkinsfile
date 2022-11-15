@@ -1,13 +1,7 @@
  pipeline {
     agent any
     stages {
-        stage('Build Artifact - Maven') {
-steps {
-sh "mvn clean package -DskipTests=true"
-archive 'target/*.jar'
-
-}
-}
+       
        stage("GIT"){
             steps{
                 git branch: 'ZahraAbassi', 
@@ -29,19 +23,20 @@ archive 'target/*.jar'
                     
                 } }
                             
-        stage('Unit test') {
-            steps {
-                echo 'mvn -v'
-                echo 'mvn -v'
-                sh 'mvn test'
-            }
-        }
+       
           
     stage('MVN PACKAGE') {
             steps {
                sh """mvn -version  """
                 sh """java -version """
                sh """mvn package -e """ 
+            }
+        }
+         stage('Unit test - Junit and jacoco') {
+            steps {
+                echo 'mvn -v'
+                echo 'mvn -v'
+                sh 'mvn test'
             }
         }
    
@@ -69,14 +64,45 @@ archive 'target/*.jar'
           sh "mvn sonar:sonar \
              -Dsonar.projectKey=achat \
   -Dsonar.host.url=http://172.10.2.140:9000 \
-  -Dsonar.login=b67a911d9183014282a22c5213f41c7cacfa78d9"
+  -Dsonar.login=936ce3ba79b30fc87aeb33c49170c3e538211a42"
 		}}
-          }
+          
+         stage('Build docker compose') {
+                 steps {
+		      sh """mvn clean -e """
+                     //sh 'docker-compose up -d --build'
+                   }
+              }
+        
+    }
           
         
 	 
           
           
-          
+           post{
+
+            success {
+                mail to: "zahradevops@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
+                from: "zahradevops@gmail.com",
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            }
+
+            failure{
+                mail to: "zahradevops@gmail.com",
+                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                from: "zahradevops@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+            }
+
+            changed{
+                mail to: "zahradevops@gmail.com",
+                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                from: "zahradevops@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+           
+        
           }
+          }}
 	 
