@@ -26,10 +26,10 @@
 	</properties>
 	<distributionManagement>
      
-       <repository>
+         <repository>
          <id>deploymentRepo </id>
          <name>maven-releases</name>
-         <url>http://172.10.2.140:8081/repository/maven-releases/</url>
+         <url>http://172.17.0.1:8081/repository/maven-releases/</url>
        </repository>
    </distributionManagement>
 	<dependencies>
@@ -52,11 +52,13 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		  
 <dependency>
 <groupId>io.springfox</groupId>
 <artifactId>springfox-swagger-ui</artifactId>
