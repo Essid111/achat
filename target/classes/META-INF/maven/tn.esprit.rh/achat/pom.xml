@@ -153,9 +153,8 @@
 		</plugins>
 	</build>
 <distributionManagement>
-     
          <repository>
-         <id>deploymentRepo </id>
+         <id>deploymentRepo</id>
          <name>maven-releases</name>
          <url>http://172.17.0.1:8081/repository/maven-releases/</url>
        </repository>
