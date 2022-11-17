@@ -1,7 +1,7 @@
 version: "3"
 services:
   server:
-    image: oussamalhl/backend
+    image: chaymaguesmi/backend
     ports:
       - "8089:8089"
     networks:
@@ -19,7 +19,7 @@ services:
     environment:
       - MYSQL_DATABASE=devopsdb
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=sa
+      - MYSQL_USER=chayma
       - MYSQL_PASSWORD=1234
 networks:
   springmysql-net:
