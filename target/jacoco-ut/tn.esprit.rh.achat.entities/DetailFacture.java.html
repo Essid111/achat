@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-<span class="nc" id="L16">@Getter</span>
+@Getter
 <span class="nc" id="L17">@Setter</span>
 <span class="nc" id="L18">@AllArgsConstructor</span>
 <span class="nc" id="L19">@NoArgsConstructor</span>
@@ -21,16 +21,16 @@ public class DetailFacture implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idDetailFacture;
-	private Integer qteCommandee;
-	private float prixTotalDetail;
-	private Integer pourcentageRemise;
-	private float montantRemise;
+<span class="nc" id="L24">	private Long idDetailFacture;</span>
+<span class="nc" id="L25">	private Integer qteCommandee;</span>
+<span class="nc" id="L26">	private float prixTotalDetail;</span>
+<span class="nc" id="L27">	private Integer pourcentageRemise;</span>
+<span class="nc" id="L28">	private float montantRemise;</span>
 	@ManyToOne
-	private Produit produit;
+<span class="nc" id="L30">	private Produit produit;</span>
 	@ManyToOne
 	@JsonIgnore
-	Facture facture;
+<span class="nc" id="L33">	Facture facture;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

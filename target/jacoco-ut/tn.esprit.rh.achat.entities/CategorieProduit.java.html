@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-<span class="nc" id="L17">@Getter</span>
+@Getter
 <span class="nc" id="L18">@Setter</span>
 <span class="nc" id="L19">@AllArgsConstructor</span>
 <span class="nc" id="L20">@NoArgsConstructor</span>
@@ -26,11 +26,11 @@ public class CategorieProduit implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCategorieProduit;
-	private String codeCategorie;
-	private String libelleCategorie;
+<span class="nc" id="L29">	private Long idCategorieProduit;</span>
+<span class="nc" id="L30">	private String codeCategorie;</span>
+<span class="nc" id="L31">	private String libelleCategorie;</span>
 	@OneToMany(mappedBy = &quot;categorieProduit&quot;)
 	@JsonIgnore
-	private Set&lt;Produit&gt; produits;
+<span class="nc" id="L34">	private Set&lt;Produit&gt; produits;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
