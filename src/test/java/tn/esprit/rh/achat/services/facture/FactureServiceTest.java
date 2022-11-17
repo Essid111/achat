@@ -96,67 +96,14 @@ public class FactureServiceTest
 		assertEquals(currentSize + 1, f.retrieveAllFactures().size());
 	}
 	
-	@Test
-	@Order(3)
-	 void retriveFacture_ok() {
-		Facture retrived = f.retrieveFacture(1L);
-		//Assertions.assertEquals(1, retrived.getIdFacture());
-	}
 	
-	@Test
+	
+	/*@Test
 	@Order(4)
 	void deleteFacture_ok() {
-		f.cancelFacture(10L);
-		//Assertions.assertNull(f.retrieveFacture(9l));
-	}
-	
-	
-	
-	/*@Test()
-	@Order(3)
-	@Transactional
-	void assignSecteurActiviteToFournisseur() {
-		f.assignOperateurToFacture(1L, 30L);                         
-		Operateur oper =s.retrieveOperateur(1l);
-		assertEquals(1, oper.getFactures().size());
-		assertEquals(30L, Optional.ofNullable(oper.getFactures().iterator().next().getIdFacture()).get().longValue());
-	}
-	
-
-
-    /*@Test
-    public void createFactureTest()
-    {
-        Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
-        facture2.setIdFacture(2L);
-
-        factureService.addFacture(facture2);
-        verify(factureRepository, times(1)).save(facture2);
-        System.out.println(facture2);
-        System.out.println(" Create is working correctly...!!");
-    }
-
-
-    @Test
-    public void getAllFactureTest()
-    {
-        List<Facture> Facturelist = new ArrayList<Facture>() {
-
-            {
-            	 add(new Facture(3L, 100, 700, null, null, null, null, null, null));
-                 add(new Facture(4L, 200, 800, null, null, null, null, null, null));
-                 add(new Facture(5L, 300, 900, null, null, null, null, null, null));
-            }};
-
-
-        when(factureService.retrieveAllFactures()).thenReturn(Facturelist);
-        //test
-        List<Facture> factureList = factureService.retrieveAllFactures();
-        assertEquals(3, factureList.size());
-        System.out.println(" Retrieve all is working correctly...!!");
-    }
-
-*/
+		f.deleteFacture(9L);
+		Assertions.assertNull(f.retrieveFacture(9l));
+	}*/
 
 
 }
