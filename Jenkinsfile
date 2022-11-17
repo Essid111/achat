@@ -41,7 +41,7 @@ pipeline {
               
             }
         }
-	stage("Publish to Nexus Repository Manager") {
+	stage("Nexus ") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -86,5 +86,11 @@ pipeline {
          }
        }
      }
+	 stage('Run app with Docker Compose') {
+       steps {
+               sh 'docker-compose up --d --force-recreate '
+       }
+     }
+
         }
 }
