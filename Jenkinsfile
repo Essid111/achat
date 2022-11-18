@@ -34,14 +34,14 @@ pipeline {
                            sh "mvn package -DskipTests=true"
                     }
           }
-	stage('Sonar') {
+	/*stage('Sonar') {
             steps {
               
                 sh 'mvn clean package sonar:sonar'
 		echo 'sonar validé'
               
             }
-        }
+        }*/
 	stage("Nexus ") {
             steps {
                 script {
