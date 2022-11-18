@@ -38,11 +38,11 @@ pipeline {
             steps {
               
                 sh 'mvn clean package sonar:sonar'
-		echo 'validé'
+		echo 'sonar validé'
               
             }
         }
-	/*stage("Nexus ") {
+	stage("Nexus ") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -71,12 +71,13 @@ pipeline {
                                 type: "pom"]
                             ]
                         );
+			echo 'nexus validé'
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
             }
-        }*/
+        }
         
 	stage('Docker Build and Push') {
        steps {
