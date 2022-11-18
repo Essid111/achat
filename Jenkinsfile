@@ -34,14 +34,15 @@ pipeline {
                            sh "mvn package -DskipTests=true"
                     }
           }
-	/*stage('Sonar') {
+	stage('Sonar') {
             steps {
               
                 sh 'mvn clean package sonar:sonar'
+		echo 'validé'
               
             }
         }
-	stage("Nexus ") {
+	/*stage("Nexus ") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
