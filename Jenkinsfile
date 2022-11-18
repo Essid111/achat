@@ -92,6 +92,20 @@ pipeline {
        }
      }
 
+	
+	stage('Email Notifications'){
+                 steps{
+                 mail bcc: '', body: '''Hello , 
+                 A Build has been executed on Your Project Achat , if you notice any bugs or abnormal behaviour please contact your team leader
+                 Best Regards , 
+                 Chayma Guesmi''', 
+                 cc: '', from: '', replyTo: '', subject: 'A Build was executed on achat', to: 'chayma.guesmi@esprit.tn'
+             
+                 }
+                 } 
+
+
+
         }
       
   
