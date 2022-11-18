@@ -34,14 +34,15 @@ pipeline {
                            sh "mvn package -DskipTests=true"
                     }
           }
-	/*stage('Sonar') {
+	stage('Sonar') {
             steps {
               
                 sh 'mvn clean package sonar:sonar'
 		echo 'sonar validé'
               
             }
-        }*/
+        }
+/*
 	stage("Nexus ") {
             steps {
                 script {
@@ -104,7 +105,7 @@ pipeline {
                  cc: '', from: '', replyTo: '', subject: 'A Build was executed on achat', to: 'chayma.guesmi@esprit.tn'
              
                  }
-                 } 
+                 } */
 
 
 
